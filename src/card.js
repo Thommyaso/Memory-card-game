@@ -9,13 +9,9 @@ export default class Card {
 
   draw(ctx) {
     this.img.onload = () => {
-      ctx.beginPath();
+      ctx.beginPath(); // czy to jest potrzebne?
       ctx.drawImage(this.img, this.x, this.y, this.cardSize, this.cardSize);
-      ctx.closePath();
+      ctx.closePath(); // czy to jest potrzebne?
     };
-  }
-
-  deleteCard(ctx) {
-    ctx.clearRect(this.x, this.y, this.cardSize, this.cardSize);
   }
 }
