@@ -1,4 +1,11 @@
-import View from './view';
+const canvas = document.querySelector('#canvas');
+const ctx = canvas.getContext('2d');
 
-const y = new View(400, 10);
-console.log(y);
+const CANVAS_BORDER_WIDTH = 400;
+
+canvas.width = CANVAS_BORDER_WIDTH;
+canvas.height = CANVAS_BORDER_WIDTH;
+
+// Draw canvas borders
+ctx.beginPath();
+ctx.strokeRect(0, 0, CANVAS_BORDER_WIDTH, CANVAS_BORDER_WIDTH);
