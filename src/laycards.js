@@ -32,7 +32,7 @@ export default class CardLayout {
   }
 
   // draws new image on selected card
-  replaceCard(x, src) {
-    this.imgArr[x].img.src = src;
+  replaceCard(index, src) {
+    this.imgArr[index].img.src = src;
   }
 }

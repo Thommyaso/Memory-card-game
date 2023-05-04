@@ -1,9 +1,10 @@
 import CardLayout from './laycards';
+import TossPictures from './images';
 
 const canvas = document.querySelector('#canvas');
 const ctx = canvas.getContext('2d');
 
-const CANVAS_BORDER_WIDTH = 300;
+const CANVAS_BORDER_WIDTH = 400;
 const CARD_SIZE = 100;
 
 canvas.width = CANVAS_BORDER_WIDTH;
@@ -17,6 +18,10 @@ ctx.strokeRect(0, 0, CANVAS_BORDER_WIDTH, CANVAS_BORDER_WIDTH);
 const cardsLayed = new CardLayout(ctx, CARD_SIZE, CANVAS_BORDER_WIDTH);
 cardsLayed.layCards();
 
+// Randomly assign pictures to each card
+const test = new TossPictures();
+test.tossPics();
+
 // eventlistener that is able to locate wchich card is being clicked on
 canvas.addEventListener('click', (event) => {
   const rect = canvas.getBoundingClientRect();
@@ -28,7 +33,7 @@ canvas.addEventListener('click', (event) => {
       console.log(`clicked: ${index}`);
       // eslint-disable-next-line max-len
       cardsLayed.deleteCard(element.x, element.y); // dlaczego ta funkcja dziala tutaj ale nie poza eventlitener?
-      cardsLayed.replaceCard(index, '../assets/images/account.svg');
+      cardsLayed.replaceCard(index, test.picsArr[test.randomArr[index]]);
     }
   });
 });
