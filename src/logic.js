@@ -1,19 +1,38 @@
 export default class Logic {
+  // Creates a private variable of randomly assigned indexes of images
+  #randomArr = []; // czy w tym przypadku dobrym pomyslem jest ztworzenie private variable?
+
   constructor(cardLayout) {
     this.cardLayout = cardLayout;
     this.imgArr = cardLayout.imgArr;
     this.picArr = cardLayout.picArr;
-    this.randomArr = cardLayout.randomArr;
+    /* const _randomArr = []; */
+
     this.clickedCard = [];
     this.indexOfClicked = [];
     this.stashedCodedIndex = [];
     this.matchedCards = [];
     this.canGo = true;
+
+    (() => {
+      const unusedPicIndex = [];
+      // makes an array from 0 to picArr.length
+      for (let t = 0; t < this.picArr.length; t += 1) {
+        unusedPicIndex.push(t);
+      }
+      // selects random index of unusedPicIndex array and pushes it to randomArr creating a randomly
+      // shuffled array
+      for (let q = 0; q < this.picArr.length; q += 1) {
+        const getNr = Math.floor(Math.random() * unusedPicIndex.length);
+        this.#randomArr.push(unusedPicIndex[getNr]);
+        unusedPicIndex.splice(getNr, 1);
+      }
+    })();
   }
 
   decide(index) {
     if (this.canGo) {
-      const codedIndex = this.randomArr[index];
+      const codedIndex = this.#randomArr[index];
 
       // makes sure that cards that are currently shown or have been matched can't be clicked on
       if (this.matchedCards.indexOf(codedIndex) === -1

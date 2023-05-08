@@ -16,9 +16,6 @@ export default class CardLayout {
     this.imgArr = [];
     // array of images available
     this.picArr = picArr;
-    // array of numbers displaced randomly to be used for shuffeling pictures out randomly
-    // on the initial array(imgArr)
-    this.randomArr = [];
   }
 
   // lays cards blanks within tha canvas
@@ -36,20 +33,6 @@ export default class CardLayout {
     });
   }
 
-  shufflePics() {
-    const unusedPicIndex = [];
-    // makes an array from 0 to picArr.length
-    for (let t = 0; t < this.picArr.length; t += 1) {
-      unusedPicIndex.push(t);
-    }
-
-    for (let q = 0; q < this.picArr.length; q += 1) {
-      const getNr = CardLayout.getNr(unusedPicIndex.length);
-      this.randomArr.push(unusedPicIndex[getNr]);
-      unusedPicIndex.splice(getNr, 1);
-    }
-  }
-
   // deletes the original image
   deleteCard(x, y) {
     this.ctx.clearRect(x, y, this.cardSize, this.cardSize);
@@ -58,9 +41,5 @@ export default class CardLayout {
   // draws new image on selected card
   replaceCard(index, src) {
     this.imgArr[index].img.src = src;
-  }
-
-  static getNr(biggestNr) { // Dlaczego muszę tutaj użyć static?
-    return Math.floor(Math.random() * biggestNr);
   }
 }
