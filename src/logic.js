@@ -1,3 +1,5 @@
+import picArr from './images';
+
 export default class Logic {
   // Creates a private variable of randomly assigned indexes of images
   #randomArr = []; // czy w tym przypadku dobrym pomyslem jest ztworzenie private variable?
@@ -6,13 +8,13 @@ export default class Logic {
     this.cardLayout = cardLayout;
     this.imgArr = cardLayout.imgArr;
     this.picArr = cardLayout.picArr;
-    /* const _randomArr = []; */
 
     this.clickedCard = [];
     this.indexOfClicked = [];
     this.stashedCodedIndex = [];
     this.matchedCards = [];
     this.canGo = true;
+    this.picArr = picArr;
 
     (() => {
       const unusedPicIndex = [];
@@ -21,7 +23,7 @@ export default class Logic {
         unusedPicIndex.push(t);
       }
       // selects random index of unusedPicIndex array and pushes it to randomArr creating a randomly
-      // shuffled array
+      // shuffled array next it removes that nr from unusedPicIndex array
       for (let q = 0; q < this.picArr.length; q += 1) {
         const getNr = Math.floor(Math.random() * unusedPicIndex.length);
         this.#randomArr.push(unusedPicIndex[getNr]);

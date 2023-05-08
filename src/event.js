@@ -11,7 +11,6 @@ export default class Event {
       cardLayout.imgArr.forEach((element, index) => {
         if (mouseX >= element.x && mouseX <= element.x + element.cardSize
                   && mouseY >= element.y && mouseY <= element.y + element.cardSize) {
-          /* console.log(`clicked: ${index}`); */
           this.logic.decide(index);
         }
       });

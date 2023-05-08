@@ -1,7 +1,8 @@
 import Card from './card';
+import Event from './event';
 
 export default class CardLayout {
-  constructor(ctx, cardSize, boardWidth, picArr) {
+  constructor(ctx, cardSize, boardWidth, canvas) {
     this.ctx = ctx;
 
     this.cardPosX = 0;
@@ -11,13 +12,11 @@ export default class CardLayout {
     this.boardWidth = boardWidth;
     this.nrOfRowsCols = boardWidth / cardSize;
 
-    // array used for laying out cards(circle outline), it creates an area to
-    // then be cilicked on and calculate index
+    // array used for laying out cards(circle outline), it creates an area for
+    // Event locates each card by using x and y values
     this.imgArr = [];
-    // array of images available
-    this.picArr = picArr;
 
-    // lays cards blanks within tha canvas
+    // lays card blanks within tha canvas
     (() => {
       for (let rowNr = 0; rowNr < this.nrOfRowsCols; rowNr += 1) {
         for (let colNr = 0; colNr < this.nrOfRowsCols; colNr += 1) {
@@ -31,6 +30,8 @@ export default class CardLayout {
         element.draw(this.ctx);
       });
     })();
+
+    this.event = new Event(canvas, this);
   }
 
   // deletes the original image
