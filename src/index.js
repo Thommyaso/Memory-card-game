@@ -17,7 +17,6 @@ ctx.strokeRect(0, 0, CANVAS_BORDER_WIDTH, CANVAS_BORDER_WIDTH);
 
 // Lay all the cards and shuffle pictures
 const cardLayout = new CardLayout(ctx, CARD_SIZE, CANVAS_BORDER_WIDTH, picArr);
-cardLayout.layCards();
 
 // eslint-disable-next-line no-unused-vars
 const event = new Event(canvas, cardLayout);

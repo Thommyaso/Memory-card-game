@@ -16,21 +16,21 @@ export default class CardLayout {
     this.imgArr = [];
     // array of images available
     this.picArr = picArr;
-  }
 
-  // lays cards blanks within tha canvas
-  layCards() {
-    for (let rowNr = 0; rowNr < this.nrOfRowsCols; rowNr += 1) {
-      for (let colNr = 0; colNr < this.nrOfRowsCols; colNr += 1) {
-        this.imgArr.push(new Card('../assets/images/backofcard.svg', this.cardSize, this.cardPosX, this.cardPosY));
-        this.cardPosX += this.cardSize;
+    // lays cards blanks within tha canvas
+    (() => {
+      for (let rowNr = 0; rowNr < this.nrOfRowsCols; rowNr += 1) {
+        for (let colNr = 0; colNr < this.nrOfRowsCols; colNr += 1) {
+          this.imgArr.push(new Card('../assets/images/backofcard.svg', this.cardSize, this.cardPosX, this.cardPosY));
+          this.cardPosX += this.cardSize;
+        }
+        this.cardPosX = 0;
+        this.cardPosY += this.cardSize;
       }
-      this.cardPosX = 0;
-      this.cardPosY += this.cardSize;
-    }
-    this.imgArr.forEach((element) => {
-      element.draw(this.ctx);
-    });
+      this.imgArr.forEach((element) => {
+        element.draw(this.ctx);
+      });
+    })();
   }
 
   // deletes the original image
